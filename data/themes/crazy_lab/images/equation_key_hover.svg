@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="48" viewBox="0 0 96 48">
+  <defs>
+    <linearGradient id="material" x2="0" y2="100%">
+      <stop stop-color="#3a4b3e"/>
+      <stop offset="1" stop-color="#314135"/>
+    </linearGradient>
+  </defs>
+  <rect x=".75" y=".75" width="94.5" height="46.5" rx="6" fill="url(#material)" stroke="#ffae52" stroke-opacity=".8" stroke-width=".8"/>
+  <path d="M8 2H88" stroke="#fff" stroke-opacity=".09"/>
+  <path d="M8 46H88" stroke="#000" stroke-opacity=".12"/>
+</svg>

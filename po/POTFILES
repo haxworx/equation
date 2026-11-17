@@ -1,0 +1,5 @@
+src/engine/equation_engine.c
+src/fe-efl/equation_ui.c
+src/fe-efl/equation_window.c
+src/fe-efl/equation_theme.c
+data/equation_calculator.desktop

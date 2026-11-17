@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="160" viewBox="0 0 512 160">
+  <rect x="1" y="1" width="510" height="158" rx="13" fill="#0a1426" stroke="#344f70" stroke-width="2"/>
+  <path d="M16 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M40 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M64 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M88 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M112 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M136 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M160 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M184 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M208 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M232 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M256 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M280 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M304 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M328 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M352 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M376 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M400 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M424 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M448 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M472 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M496 12v136" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M12 16h488" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M12 40h488" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M12 64h488" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M12 88h488" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M12 112h488" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M12 136h488" stroke="#77e4d7" stroke-opacity=".045"/>
+  <path d="M12 32V12h20M480 12h20v20M12 128v20h20M480 148h20v-20" fill="none" stroke="#77e4d7" stroke-opacity=".5"/>
+  <g fill="#d9f9ff" opacity=".4">
+    <circle cx="300" cy="41" r=".8"/>
+    <circle cx="452" cy="104" r=".7"/>
+    <circle cx="216" cy="72" r="1"/>
+  </g>
+</svg>

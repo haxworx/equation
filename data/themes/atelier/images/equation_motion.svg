@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <g fill="none" stroke="#778a76">
+    <circle cx="100" cy="100" r="75" stroke-dasharray="1 6"/>
+    <circle cx="100" cy="100" r="61" stroke-opacity=".4"/>
+    <path d="M100 10v180M10 100h180" stroke-opacity=".3"/>
+    <path d="M50 166L100 26l50 140M68 116h64" stroke-width="1.5"/>
+    <circle cx="100" cy="26" r="5"/>
+  </g>
+</svg>

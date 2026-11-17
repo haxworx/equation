@@ -1,0 +1,27 @@
+#define BG 21 37 38 255
+#define PANEL 32 51 52 255
+#define EDGE 92 98 81 255
+#define INK 232 216 174 255
+#define ACCENT 255 162 82 255
+#define RGB_ACCENT 255 162 82
+#define MUTE 167 180 156 255
+#define DISPLAY 16 23 19 255
+#define ENTRY_STYLE "font=Sans font_size=11 color=#e8d8aeff wrap=none"
+#define GUIDE_STYLE "font=Sans font_size=11 color=#a7b49cff wrap=none"
+#define LABEL_STYLE "font=Sans font_size=10 color=#a7b49cff wrap=none"
+#define THEME_SUBTITLE "HIGH VOLTAGE / LOW CERTAINTY"
+#define THEME_LABEL "Crazy Lab"
+#define ATELIER 0
+#define LAB 1
+#include "images/equation_images.edc"
+efl_version: 1 26;
+data { item: "equation.theme.name" THEME_LABEL; item: "equation.theme.version" "1"; }
+collections {
+ #include "../common/groups/equation_frame.edc"
+ #include "../common/groups/equation_buttons.edc"
+ #include "../common/groups/equation_choices.edc"
+ #include "../common/groups/equation_fields.edc"
+ #include "../common/groups/equation_popup.edc"
+ #include "../common/groups/equation_display.edc"
+ #include "../common/groups/equation_results.edc"
+}

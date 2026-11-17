@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Equation
+Comment=Scientific and programmer calculator
+Exec=equation
+Icon=equation_calculator
+Terminal=false
+Categories=Utility;Calculator;
+Keywords=calculator;scientific;programmer;hexadecimal;binary;
+StartupWMClass=equation

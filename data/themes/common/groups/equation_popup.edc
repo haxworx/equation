@@ -1,0 +1,259 @@
+group { name: "elm/notify/center/popup/default";
+ alias: "elm/notify/top/popup/default";
+ alias: "elm/notify/bottom/popup/default";
+ alias: "elm/notify/left/popup/default";
+ alias: "elm/notify/right/popup/default";
+ alias: "elm/notify/top_left/popup/default";
+ alias: "elm/notify/top_right/popup/default";
+ alias: "elm/notify/bottom_left/popup/default";
+ alias: "elm/notify/bottom_right/popup/default";
+ data.item: "hide_finished_signal" "on";
+ parts {
+  part { name: "clip"; type: RECT; mouse_events: 0;
+   scale: 1; description { offset_scale: 1; state: "default" 0.0; rel1.offset: -75 -75; rel2.offset: 74 74; color: 255 255 255 0; }
+   description { offset_scale: 1; state: "visible" 0.0; inherit: "default" 0.0; color: 255 255 255 255; }
+  }
+  part { name: "shadow"; type: RECT; mouse_events: 0; clip_to: "clip";
+   scale: 1; description { offset_scale: 1; state: "default" 0.0; rel.to: "base"; rel1.offset: -3 -2; rel2.offset: 2 5; color: 0 0 0 42; }
+  }
+  part { name: "edge"; type: RECT; mouse_events: 0; clip_to: "clip";
+   scale: 1; description { offset_scale: 1; state: "default" 0.0; rel.to: "base"; rel1.offset: -1 -1; rel2.offset: 0 0; color: EDGE; }
+  }
+  part { name: "base"; type: RECT; clip_to: "clip";
+   scale: 1; description { offset_scale: 1; state: "default" 0.0; color: BG;
+    rel1.offset: 8 15; rel2.offset: -8 -1; }
+   description { offset_scale: 1; state: "visible" 0.0; inherit: "default" 0.0;
+    rel1.offset: 8 8; rel2.offset: -8 -8; }
+  }
+  part { name: "elm.swallow.content"; type: SWALLOW; clip_to: "clip";
+   scale: 1; description { offset_scale: 1; state: "default" 0.0; rel.to: "base"; rel1.offset: 9 9; rel2.offset: -10 -10; }
+  }
+ }
+ programs {
+  program { signal: "show"; source: ""; action: STATE_SET "visible" 0.0;
+   target: "clip"; target: "base"; transition: DECELERATE 0.16; }
+  program { signal: "hide"; source: ""; action: STATE_SET "default" 0.0; target: "clip"; target: "base"; }
+  program { signal: "elm,state,hide"; source: "elm";
+   action: STATE_SET "default" 0.0; target: "clip"; target: "base";
+   transition: ACCELERATE 0.12; after: "hide_finish"; }
+  program { name: "hide_finish"; action: SIGNAL_EMIT "elm,action,hide,finished" "elm"; }
+ }
+}
+group { name: "elm/notify/block_events/popup/default";
+ data.item: "hide_finished_signal" "on";
+ parts {
+  part { name: "block_events"; type: RECT;
+   scale: 1; description { offset_scale: 1; state: "default" 0.0; color: 0 0 0 0; }
+   description { offset_scale: 1; state: "visible" 0.0; color: 0 0 0 144; }
+  }
+ }
+ programs {
+  program { signal: "mouse,clicked,1"; source: "block_events"; action: SIGNAL_EMIT "elm,action,click" "elm"; }
+  program { signal: "show"; source: "*"; action: STATE_SET "visible" 0.0; target: "block_events"; transition: DECELERATE 0.16; }
+  program { signal: "hide"; source: ""; action: STATE_SET "default" 0.0; target: "block_events"; }
+  program { signal: "elm,state,hide"; source: "elm";
+   action: STATE_SET "default" 0.0; target: "block_events";
+   transition: ACCELERATE 0.12; after: "hide_finish"; }
+  program { name: "hide_finish"; action: SIGNAL_EMIT "elm,action,hide,finished" "elm"; }
+ }
+}
+
+/* The same tab strip is used by Settings and About. */
+group { name: "elm/popup/base/default";
+ alias: "elm/popup/base/transparent";
+ styles {
+  style { name: "popup_title_style";
+   base: "font=Sans:style=Bold font_size=11 text_class=label align=left color=#ffffff wrap=mixed";
+   tag: "br" "\n";
+   tag: "hilight" "+ font_weight=Bold";
+   tag: "b" "+ font_weight=Bold";
+   tag: "whitecolor" "+ color=#fff"; // no cc
+   tag: "tab" "\t";
+  }
+ }
+ parts {
+  part { name: "base"; type: RECT;
+   scale: 1;
+   description { offset_scale: 1; state: "default" 0.0;
+    min: 180 0;
+    color: 0 0 0 0; // no cc
+   }
+  }
+  part { name: "elm.swallow.background"; type: SWALLOW;
+   scale: 1;
+   description { offset_scale: 1; state: "default" 0.0;
+    fixed: 1 1;
+    rel.to: "base";
+   }
+  }
+  part { name: "elm.bg.title"; type: RECT;
+   scale: 1; description { offset_scale: 1; state: "default" 0.0;
+    fixed: 1 1;
+    rel.to: "elm.text.title";
+    color: 0 0 0 0; // no cc
+   }
+  }
+  part { name: "elm.text.title"; type: TEXTBLOCK;
+   scale: 1;
+   description { offset_scale: 1; state: "default" 0.0;
+    fixed: 0 1;
+    min: 0 27;
+    color: INK;
+    text { style: "popup_title_style";
+     min: 1 1;
+     ellipsis: -1;
+    }
+    visible: 0;
+    rel1.offset: 4 4;
+    rel2.offset: -35 4;
+    rel2.relative: 1.0 0.0;
+    align: 0.5 0.0;
+
+   }
+   description { offset_scale: 1; state: "visible" 0.0;
+    inherit: "default" 0.0;
+    visible: 1;
+   }
+  }
+  part { name: "elm.swallow.title.icon"; type: SWALLOW;
+   scale: 1;
+   description { offset_scale: 1; state: "default" 0.0;
+    fixed: 1 1;
+    align: 1.0 0.5;
+    min: 24 24; max: 24 24;
+    rel1.to_y: "elm.text.title";
+    rel2.to_y: "elm.text.title";
+    rel1.relative: 1.0 0.0;
+    rel1.offset: -29 0;
+    rel2.relative: 1.0 1.0;
+    rel2.offset: -4 -1;
+    aspect: 1.0 1.0; aspect_preference: VERTICAL;
+    visible: 0;
+   }
+   description { offset_scale: 1; state: "visible" 0.0;
+    inherit: "default" 0.0;
+    visible: 1;
+   }
+  }
+  part { name: "elm.swallow.content"; type: SWALLOW;
+   scale: 1;
+   description { offset_scale: 1; state: "default" 0.0;
+    rel1.offset: 4 4;
+    rel2.offset: -5 -5;
+
+   }
+   description { offset_scale: 1; state: "show_title_area" 0.0;
+    inherit: "default" 0.0;
+    rel1.relative: 0.0 1.0;
+    rel1.to_y: "elm.bg.title";
+   }
+   description { offset_scale: 1; state: "show_action_area" 0.0;
+    inherit: "default" 0.0;
+    rel2.relative: 1.0 0.0;
+    rel2.to_y: "elm.swallow.action_area";
+   }
+   description { offset_scale: 1; state: "show_action_title_area" 0.0;
+    inherit: "default" 0.0;
+    rel1.relative: 0.0 1.0;
+    rel1.to_y: "elm.bg.title";
+    rel2.relative: 1.0 0.0;
+    rel2.to_y: "elm.swallow.action_area";
+   }
+  }
+  part { name: "elm.swallow.action_area"; type: SWALLOW;
+   scale: 1;
+   description { offset_scale: 1; state: "default" 0.0;
+    fixed: 0 1;
+    align: 0.5 1.0;
+    visible: 0;
+    rel.to: "base";
+    rel1.relative: 0.0 1.0;
+    rel1.offset: 4 -5;
+    rel2.offset: -5 -5;
+
+   }
+   description { offset_scale: 1; state: "visible" 0.0;
+    inherit: "default" 0.0;
+    visible: 1;
+   }
+  }
+
+  part { name: "access.title"; type: RECT; repeat_events: 1;
+   scale: 1; description { offset_scale: 1; state: "default" 0.0;
+    fixed: 1 1;
+    rel.to: "elm.bg.title";
+    color: 0 0 0 0; // no cc
+   }
+  }
+  part { name: "access.body"; type: RECT; repeat_events: 1;
+   scale: 1; description { offset_scale: 1; state: "default" 0.0;
+    fixed: 1 1;
+    rel.to: "elm.swallow.content";
+    color: 0 0 0 0; // no cc
+   }
+  }
+ }
+ programs {
+  program { signal: "elm,state,title,icon,visible"; source: "elm";
+   action: STATE_SET "visible" 0.0;
+   target: "elm.swallow.title.icon";
+  }
+  program { signal: "elm,state,title,icon,hidden"; source: "elm";
+   action: STATE_SET "default" 0.0;
+   target: "elm.swallow.title.icon";
+  }
+  program { signal: "elm,state,title,text,visible"; source: "elm";
+   action: STATE_SET "visible" 0.0;
+   target: "elm.text.title";
+  }
+  program { signal: "elm,state,title,text,hidden"; source: "elm";
+   action: STATE_SET "default" 0.0;
+   target: "elm.text.title";
+  }
+  program { signal: "elm,state,title_area,visible"; source: "elm";
+   script {
+    new st[31], Float:vl;
+    get_state(PART:"elm.swallow.action_area", st, 30, vl);
+    if (!strcmp(st, "visible"))
+    set_state(PART:"elm.swallow.content", "show_action_title_area", 0.0);
+    else
+    set_state(PART:"elm.swallow.content", "show_title_area", 0.0);
+    set_state(PART:"elm.text.title", "visible", 0.0);
+   }
+  }
+  program { signal: "elm,state,title_area,hidden"; source: "elm";
+   script {
+    new st[31], Float:vl;
+    get_state(PART:"elm.swallow.action_area", st, 30, vl);
+    if (!strcmp(st, "visible"))
+    set_state(PART:"elm.swallow.content", "show_action_area", 0.0);
+    else
+    set_state(PART:"elm.swallow.content", "default", 0.0);
+    set_state(PART:"elm.text.title", "default", 0.0);
+   }
+  }
+  program { signal: "elm,state,action_area,visible"; source: "elm";
+   script {
+    new st[31], Float:vl;
+    get_state(PART:"elm.text.title", st, 30, vl);
+    if (!strcmp(st, "visible"))
+    set_state(PART:"elm.swallow.content", "show_action_title_area", 0.0);
+    else
+    set_state(PART:"elm.swallow.content", "show_action_area", 0.0);
+    set_state(PART:"elm.swallow.action_area", "visible", 0.0);
+   }
+  }
+  program { signal: "elm,state,action_area,hidden"; source: "elm";
+   script {
+    new st[31], Float:vl;
+    get_state(PART:"elm.text.title", st, 30, vl);
+    if (!strcmp(st, "visible"))
+    set_state(PART:"elm.swallow.content", "show_title_area", 0.0);
+    else
+    set_state(PART:"elm.swallow.content", "default", 0.0);
+    set_state(PART:"elm.swallow.action_area", "default", 0.0);
+   }
+  }
+ }
+}
+

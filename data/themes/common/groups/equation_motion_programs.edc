@@ -1,0 +1,53 @@
+program { name: "motion_start"; signal: "equation,motion,on"; source: "equation";
+ action: ACTION_STOP; target: "orbit_spin"; target: "orbit_reset";
+ target: "led_0_rise"; target: "led_0_fall";
+ target: "led_1_rise"; target: "led_1_fall";
+ target: "led_2_rise"; target: "led_2_fall";
+ after: "orbit_reset"; after: "led_0_rise"; after: "led_1_rise"; after: "led_2_rise";
+}
+program { name: "orbit_reset"; action: STATE_SET "default" 0.0; target: "motion_orbit"; after: "orbit_spin"; }
+program { name: "orbit_spin"; action: STATE_SET "spin" 0.0; target: "motion_orbit";
+#if LAB
+ transition: LINEAR 12;
+#elif ATELIER
+ transition: LINEAR 60;
+#else
+ transition: LINEAR 36;
+#endif
+ after: "orbit_reset";
+}
+program { name: "led_0_rise"; in: 0.00 0;
+ action: STATE_SET "lit" 0.0; target: "motion_led_0";
+ transition: SINUSOIDAL 1.20; after: "led_0_fall"; }
+program { name: "led_0_fall"; action: STATE_SET "default" 0.0; target: "motion_led_0";
+ transition: SINUSOIDAL 1.40; after: "led_0_rise"; }
+program { name: "led_1_rise"; in: 0.21 0;
+ action: STATE_SET "lit" 0.0; target: "motion_led_1";
+ transition: SINUSOIDAL 1.33; after: "led_1_fall"; }
+program { name: "led_1_fall"; action: STATE_SET "default" 0.0; target: "motion_led_1";
+ transition: SINUSOIDAL 1.53; after: "led_1_rise"; }
+program { name: "led_2_rise"; in: 0.42 0;
+ action: STATE_SET "lit" 0.0; target: "motion_led_2";
+ transition: SINUSOIDAL 1.46; after: "led_2_fall"; }
+program { name: "led_2_fall"; action: STATE_SET "default" 0.0; target: "motion_led_2";
+ transition: SINUSOIDAL 1.66; after: "led_2_rise"; }
+program { signal: "equation,motion,off"; source: "equation";
+ action: ACTION_STOP; target: "orbit_spin"; target: "orbit_reset";
+ target: "result_fade"; target: "result_scan";
+ target: "led_0_rise"; target: "led_0_fall";
+ target: "led_1_rise"; target: "led_1_fall";
+ target: "led_2_rise"; target: "led_2_fall";
+ after: "motion_idle";
+}
+program { name: "motion_idle"; action: STATE_SET "default" 0.0;
+ target: "motion_orbit"; target: "scan"; target: "result_clip";
+ target: "motion_led_0"; target: "motion_led_1"; target: "motion_led_2";
+}
+program { signal: "equation,result"; source: "equation";
+ action: ACTION_STOP; target: "result_fade"; target: "result_scan";
+ after: "result_ignite"; after: "result_scan_start";
+}
+program { name: "result_ignite"; action: STATE_SET "ignite" 0.0; target: "result_clip"; after: "result_fade"; }
+program { name: "result_fade"; action: STATE_SET "default" 0.0; target: "result_clip"; transition: DECELERATE .42; }
+program { name: "result_scan_start"; action: STATE_SET "start" 0.0; target: "scan"; after: "result_scan"; }
+program { name: "result_scan"; action: STATE_SET "finish" 0.0; target: "scan"; transition: DECELERATE .65; }

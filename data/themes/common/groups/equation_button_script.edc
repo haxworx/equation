@@ -1,0 +1,24 @@
+/* Pointer and keyboard focus are independent. Never clear hover on focus loss. */
+script {
+ public equation_hovered, equation_focused, equation_pressed, equation_disabled;
+ public equation_lit, equation_visual;
+ public equation_button_update() {
+  new active = (get_int(equation_hovered) || get_int(equation_focused)) && !get_int(equation_disabled);
+  if (active != get_int(equation_lit)) {
+   set_int(equation_lit, active);
+   if (active) emit("equation,hover,on", "equation");
+   else emit("equation,hover,off", "equation");
+  }
+  new visual = 0;
+  if (get_int(equation_disabled)) visual = 3;
+  else if (get_int(equation_pressed) && get_int(equation_hovered)) visual = 2;
+  else if (active) visual = 1;
+  if (visual != get_int(equation_visual)) {
+   set_int(equation_visual, visual);
+   if (visual == 3) emit("equation,button,disabled", "equation");
+   else if (visual == 2) emit("equation,button,pressed", "equation");
+   else if (visual == 1) emit("equation,button,over", "equation");
+   else emit("equation,button,idle", "equation");
+  }
+ }
+}

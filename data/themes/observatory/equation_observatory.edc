@@ -1,0 +1,27 @@
+#define BG 16 25 39 255
+#define PANEL 25 40 60 255
+#define EDGE 50 70 94 255
+#define INK 225 236 245 255
+#define ACCENT 114 219 208 255
+#define RGB_ACCENT 114 219 208
+#define MUTE 135 156 179 255
+#define DISPLAY 11 19 31 255
+#define ENTRY_STYLE "font=Sans font_size=11 color=#e1ecf5ff wrap=none"
+#define GUIDE_STYLE "font=Sans font_size=11 color=#879cb3ff wrap=none"
+#define LABEL_STYLE "font=Sans font_size=10 color=#879cb3ff wrap=none"
+#define THEME_SUBTITLE "PRECISION / AFTER DARK"
+#define THEME_LABEL "Observatory"
+#define ATELIER 0
+#define LAB 0
+#include "images/equation_images.edc"
+efl_version: 1 26;
+data { item: "equation.theme.name" THEME_LABEL; item: "equation.theme.version" "1"; }
+collections {
+ #include "../common/groups/equation_frame.edc"
+ #include "../common/groups/equation_buttons.edc"
+ #include "../common/groups/equation_choices.edc"
+ #include "../common/groups/equation_fields.edc"
+ #include "../common/groups/equation_popup.edc"
+ #include "../common/groups/equation_display.edc"
+ #include "../common/groups/equation_results.edc"
+}

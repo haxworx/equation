@@ -1,0 +1,95 @@
+/* Native client decorations: hit surfaces, widget controls, content swallow. */
+group { name: "equation/frame";
+ parts {
+  /* Shared 2x nine-slice: generous alpha padding keeps the penumbra unclipped. */
+  part { name: "equation.shadow"; type: IMAGE; scale: 1; mouse_events: 0;
+   description { state: "default" 0.0;
+    image.normal: "equation_window_shadow.png";
+    image.border: 96 96 96 96; image.border_scale: 1; image.border_scale_by: 0.5;
+   }
+   description { state: "maximized" 0.0; inherit: "default" 0.0; visible: 0; }
+  }
+  part { name: "body"; type: IMAGE; scale: 1; mouse_events: 0;
+   description { state: "default" 0.0; offset_scale: 1; rel1.offset: 18 12; rel2.offset: -19 -27; image.normal: "equation_body.svg"; image.border: 24 24 72 24; }
+   description { state: "maximized" 0.0; inherit: "default" 0.0; rel1.offset: 0 0; rel2.offset: -1 -1; }
+  }
+  part { name: "header_rule"; type: IMAGE; scale: 1; mouse_events: 0;
+   description { state: "default" 0.0; offset_scale: 1; rel.to: "body";
+    rel1.offset: 15 63; rel2 { relative: 1 0; offset: -16 65; }
+    image.normal: "equation_rule.svg";
+    fill.size { relative: 0 0; offset: 32 4; }
+   }
+  }
+  part { name: "header_shadow_0"; type: RECT; scale: 1; mouse_events: 0;
+   description { state: "default" 0.0; offset_scale: 1; rel.to: "body"; color: 0 0 0 40;
+    rel1 { relative: 0 0; offset: 15 66; } rel2 { relative: 1 0; offset: -16 66; } }
+  }
+  part { name: "header_shadow_1"; type: RECT; scale: 1; mouse_events: 0;
+   description { state: "default" 0.0; offset_scale: 1; rel.to: "body"; color: 0 0 0 28;
+    rel1 { relative: 0 0; offset: 15 67; } rel2 { relative: 1 0; offset: -16 67; } }
+  }
+  part { name: "header_shadow_2"; type: RECT; scale: 1; mouse_events: 0;
+   description { state: "default" 0.0; offset_scale: 1; rel.to: "body"; color: 0 0 0 18;
+    rel1 { relative: 0 0; offset: 15 68; } rel2 { relative: 1 0; offset: -16 68; } }
+  }
+  part { name: "header_shadow_3"; type: RECT; scale: 1; mouse_events: 0;
+   description { state: "default" 0.0; offset_scale: 1; rel.to: "body"; color: 0 0 0 10;
+    rel1 { relative: 0 0; offset: 15 69; } rel2 { relative: 1 0; offset: -16 69; } }
+  }
+  part { name: "header_shadow_4"; type: RECT; scale: 1; mouse_events: 0;
+   description { state: "default" 0.0; offset_scale: 1; rel.to: "body"; color: 0 0 0 5;
+    rel1 { relative: 0 0; offset: 15 70; } rel2 { relative: 1 0; offset: -16 70; } }
+  }
+  part { name: "header_shadow_5"; type: RECT; scale: 1; mouse_events: 0;
+   description { state: "default" 0.0; offset_scale: 1; rel.to: "body"; color: 0 0 0 2;
+    rel1 { relative: 0 0; offset: 15 71; } rel2 { relative: 1 0; offset: -16 71; } }
+  }
+  part { name: "equation.move"; type: RECT;
+   scale: 1; description { state: "default" 0.0; offset_scale: 1; rel.to: "body"; color: 0 0 0 0;
+    rel1.offset: 6 6; rel2 { relative: 1 0; offset: -7 61; } }
+  }
+  part { name: "equation.title"; type: TEXT; scale: 1; mouse_events: 0;
+   description { state: "default" 0.0; offset_scale: 1; rel.to: "body";
+    rel1.offset: 63 12; rel2 { relative: 1 0; offset: -125 34; } color: INK;
+    text { font: "Sans:style=Bold"; size: 15; align: 0 0.5; min: 0 1; ellipsis: 1; } }
+   description { state: "dialog" 0.0; inherit: "default" 0.0; rel1.offset: 25 12; rel2.offset: -65 34; }
+  }
+  part { name: "equation.subtitle"; type: TEXT; scale: 1; mouse_events: 0;
+   description { state: "default" 0.0; offset_scale: 1; rel.to: "body";
+    rel1.offset: 63 35; rel2 { relative: 1 0; offset: -115 50; } color: MUTE;
+    text { text: THEME_SUBTITLE; font: "Monospace"; size: 7; align: 0 0.5; ellipsis: 1; } }
+   description { state: "dialog" 0.0; inherit: "default" 0.0; rel1.offset: 25 35; }
+  }
+  part { name: "equation.menu"; type: SWALLOW; scale: 1;
+   description { state: "default" 0.0; offset_scale: 1; rel.to: "body";
+    rel1 { relative: 0 0; offset: 19 14; } rel2 { relative: 0 0; offset: 50 47; } }
+  }
+  part { name: "equation.controls"; type: SWALLOW; scale: 1;
+   description { state: "default" 0.0; offset_scale: 1; rel.to: "body";
+    rel1 { relative: 1 0; offset: -110 14; } rel2 { relative: 1 0; offset: -17 47; } }
+   description { state: "dialog" 0.0; inherit: "default" 0.0; rel1.offset: -49 14; }
+  }
+  part { name: "equation.content"; type: SWALLOW; scale: 1;
+   description { state: "default" 0.0; offset_scale: 1; rel.to: "body";
+    rel1.offset: 18 80; rel2.offset: -19 -19; } }
+#define GRIP(n,x1,y1,x2,y2,ox1,oy1,ox2,oy2) \
+  part { name: n; type: RECT; scale: 1; description { state: "default" 0.0; offset_scale: 1; rel.to: "body"; color: 0 0 0 0; rel1 { relative: x1 y1; offset: ox1 oy1; } rel2 { relative: x2 y2; offset: ox2 oy2; } } }
+  GRIP("top",0,0,1,0, 7,0,-8,6)
+  GRIP("bottom",0,1,1,1, 7,-7,-8,-1)
+  GRIP("left",0,0,0,1, 0,7,6,-8)
+  GRIP("right",1,0,1,1, -7,7,-1,-8)
+  GRIP("tl",0,0,0,0, 0,0,6,6)
+  GRIP("tr",1,0,1,0, -7,0,-1,6)
+  GRIP("bl",0,1,0,1, 0,-7,6,-1)
+  GRIP("br",1,1,1,1, -7,-7,-1,-1)
+#undef GRIP
+ }
+ programs {
+  program { signal: "equation,maximized"; source: "equation";
+   action: STATE_SET "maximized" 0.0; target: "body"; target: "equation.shadow"; }
+  program { signal: "equation,restored"; source: "equation";
+   action: STATE_SET "default" 0.0; target: "body"; target: "equation.shadow"; }
+  program { signal: "equation,dialog"; source: "equation";
+   action: STATE_SET "dialog" 0.0; target: "equation.title"; target: "equation.subtitle"; target: "equation.controls"; }
+ }
+}

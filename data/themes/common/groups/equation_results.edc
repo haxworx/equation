@@ -1,0 +1,27 @@
+/* Base labels remain fixed while the full-precision values scroll separately. */
+group { name: "equation/result-row";
+ parts {
+  part { name: "surface"; type: IMAGE; mouse_events: 0;
+   description { state: "default" 0.0; image.normal: "equation_field.svg"; image.border: 10 10 10 10; }
+  }
+  part { name: "equation.label"; type: TEXT; scale: 1; mouse_events: 0;
+   description { state: "default" 0.0; offset_scale: 1;
+    rel1.offset: 13 0; rel2 { relative: 0 1; offset: 75 -1; } color: ACCENT;
+    text { font: "Monospace:style=Bold"; size: 9; align: 0 .5; } }
+  }
+  part { name: "separator"; type: RECT; scale: 1; mouse_events: 0;
+   description { state: "default" 0.0; offset_scale: 1;
+    rel1.offset: 77 9; rel2 { relative: 0 1; offset: 77 -10; } color: EDGE; }
+  }
+  part { name: "equation.result"; type: SWALLOW; scale: 1;
+   description { state: "default" 0.0; offset_scale: 1;
+    rel1.offset: 85 3; rel2.offset: -9 -4; }
+  }
+ }
+}
+#define EQUATION_ICON(n, imagefile) \
+group { name: n; parts { part { name: "glyph"; type: IMAGE; mouse_events: 0; \
+ description { state: "default" 0.0; aspect: 1 1; aspect_preference: BOTH; image.normal: imagefile; } } } }
+EQUATION_ICON("equation/icon/copy", "equation_copy.svg")
+EQUATION_ICON("equation/icon/check", "equation_check.svg")
+#undef EQUATION_ICON

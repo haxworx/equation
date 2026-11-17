@@ -1,0 +1,167 @@
+/* A shared result contract; Crazy Lab supplies real glass cathode artwork. */
+group { name: "equation/display";
+ min: 260 108;
+ parts {
+  part { name: "panel"; type: IMAGE; mouse_events: 0;
+   description { state: "default" 0.0; image.normal: "equation_display.svg"; image.border: 18 18 18 18; }
+  }
+  #include "equation_motion_parts.edc"
+  part { name: "caption"; type: TEXT; scale: 1; mouse_events: 0;
+   description { state: "default" 0.0; offset_scale: 1;
+    rel1.offset: 15 8; rel2 { relative: 1 0; offset: -54 23; } color: MUTE;
+    text { text: "DECIMAL / RESULT"; font: "Monospace"; size: 8; align: 0 0.5; } }
+  }
+  part { name: "equation.value"; type: TEXT; scale: 1; mouse_events: 0; clip_to: "result_clip";
+   description { state: "default" 0.0; offset_scale: 1;
+    rel1.offset: 18 30; rel2.offset: -18 -27; color: ACCENT;
+    text { font: "Monospace"; size: 26; fit: 1 0; size_range: 12 26; align: 1 0.5; } }
+#if LAB
+   description { state: "digits" 0.0; inherit: "default" 0.0; visible: 0; }
+#endif
+  }
+  part { name: "equation.copy"; type: SWALLOW; scale: 1;
+   description { state: "default" 0.0; offset_scale: 1;
+    rel1 { relative: 1 0; offset: -44 7; } rel2 { relative: 1 0; offset: -13 38; } }
+  }
+  part { name: "equation.note"; type: TEXT; scale: 1; mouse_events: 0;
+   description { state: "default" 0.0; offset_scale: 1; color: MUTE;
+    rel1 { relative: 0 1; offset: 44 -23; } rel2.offset: -68 -6;
+    text { font: "Monospace"; size: 7; align: 0 .5; ellipsis: 1; } }
+  }
+
+#if LAB
+  part { name: "digit_clip"; type: RECT; mouse_events: 0; clip_to: "result_clip";
+   description { state: "default" 0.0; }
+   description { state: "compact" 0.0; inherit: "default" 0.0; visible: 0; }
+  }
+  part { name: "tubes_area"; type: RECT; scale: 1; mouse_events: 0;
+   description { state: "default" 0.0; offset_scale: 1; color: 0 0 0 0; aspect: 7 7; aspect_preference: BOTH; rel1.offset: 13 30; rel2.offset: -14 -24; }
+  }
+  part { name: "tube_0"; type: IMAGE; mouse_events: 0; clip_to: "digit_clip";
+   description { state: "default" 0.0; rel.to: "tubes_area"; rel1 { relative: 0.00000000 0; offset: 1 0; } rel2 { relative: 0.07142857 1; offset: -2 -1; } aspect: .45 .45; aspect_preference: BOTH; image.normal: "equation_tube.svg"; }
+  }
+  part { name: "equation.digit.0"; type: TEXT; scale: 1; mouse_events: 0; clip_to: "digit_clip"; effect: GLOW;
+   description { state: "default" 0.0; rel.to: "tube_0"; rel1.relative: 0 .1; rel2.relative: 1 .79;
+    color: 255 185 104 255; color2: 255 96 24 150; color3: 255 130 45 100;
+    text { font: "Monospace"; size: 25; fit: 1 1; size_range: 6 25; align: .5 .5; } }
+  }
+  part { name: "tube_1"; type: IMAGE; mouse_events: 0; clip_to: "digit_clip";
+   description { state: "default" 0.0; rel.to: "tubes_area"; rel1 { relative: 0.07142857 0; offset: 1 0; } rel2 { relative: 0.14285714 1; offset: -2 -1; } aspect: .45 .45; aspect_preference: BOTH; image.normal: "equation_tube.svg"; }
+  }
+  part { name: "equation.digit.1"; type: TEXT; scale: 1; mouse_events: 0; clip_to: "digit_clip"; effect: GLOW;
+   description { state: "default" 0.0; rel.to: "tube_1"; rel1.relative: 0 .1; rel2.relative: 1 .79;
+    color: 255 185 104 255; color2: 255 96 24 150; color3: 255 130 45 100;
+    text { font: "Monospace"; size: 25; fit: 1 1; size_range: 6 25; align: .5 .5; } }
+  }
+  part { name: "tube_2"; type: IMAGE; mouse_events: 0; clip_to: "digit_clip";
+   description { state: "default" 0.0; rel.to: "tubes_area"; rel1 { relative: 0.14285714 0; offset: 1 0; } rel2 { relative: 0.21428571 1; offset: -2 -1; } aspect: .45 .45; aspect_preference: BOTH; image.normal: "equation_tube.svg"; }
+  }
+  part { name: "equation.digit.2"; type: TEXT; scale: 1; mouse_events: 0; clip_to: "digit_clip"; effect: GLOW;
+   description { state: "default" 0.0; rel.to: "tube_2"; rel1.relative: 0 .1; rel2.relative: 1 .79;
+    color: 255 185 104 255; color2: 255 96 24 150; color3: 255 130 45 100;
+    text { font: "Monospace"; size: 25; fit: 1 1; size_range: 6 25; align: .5 .5; } }
+  }
+  part { name: "tube_3"; type: IMAGE; mouse_events: 0; clip_to: "digit_clip";
+   description { state: "default" 0.0; rel.to: "tubes_area"; rel1 { relative: 0.21428571 0; offset: 1 0; } rel2 { relative: 0.28571429 1; offset: -2 -1; } aspect: .45 .45; aspect_preference: BOTH; image.normal: "equation_tube.svg"; }
+  }
+  part { name: "equation.digit.3"; type: TEXT; scale: 1; mouse_events: 0; clip_to: "digit_clip"; effect: GLOW;
+   description { state: "default" 0.0; rel.to: "tube_3"; rel1.relative: 0 .1; rel2.relative: 1 .79;
+    color: 255 185 104 255; color2: 255 96 24 150; color3: 255 130 45 100;
+    text { font: "Monospace"; size: 25; fit: 1 1; size_range: 6 25; align: .5 .5; } }
+  }
+  part { name: "tube_4"; type: IMAGE; mouse_events: 0; clip_to: "digit_clip";
+   description { state: "default" 0.0; rel.to: "tubes_area"; rel1 { relative: 0.28571429 0; offset: 1 0; } rel2 { relative: 0.35714286 1; offset: -2 -1; } aspect: .45 .45; aspect_preference: BOTH; image.normal: "equation_tube.svg"; }
+  }
+  part { name: "equation.digit.4"; type: TEXT; scale: 1; mouse_events: 0; clip_to: "digit_clip"; effect: GLOW;
+   description { state: "default" 0.0; rel.to: "tube_4"; rel1.relative: 0 .1; rel2.relative: 1 .79;
+    color: 255 185 104 255; color2: 255 96 24 150; color3: 255 130 45 100;
+    text { font: "Monospace"; size: 25; fit: 1 1; size_range: 6 25; align: .5 .5; } }
+  }
+  part { name: "tube_5"; type: IMAGE; mouse_events: 0; clip_to: "digit_clip";
+   description { state: "default" 0.0; rel.to: "tubes_area"; rel1 { relative: 0.35714286 0; offset: 1 0; } rel2 { relative: 0.42857143 1; offset: -2 -1; } aspect: .45 .45; aspect_preference: BOTH; image.normal: "equation_tube.svg"; }
+  }
+  part { name: "equation.digit.5"; type: TEXT; scale: 1; mouse_events: 0; clip_to: "digit_clip"; effect: GLOW;
+   description { state: "default" 0.0; rel.to: "tube_5"; rel1.relative: 0 .1; rel2.relative: 1 .79;
+    color: 255 185 104 255; color2: 255 96 24 150; color3: 255 130 45 100;
+    text { font: "Monospace"; size: 25; fit: 1 1; size_range: 6 25; align: .5 .5; } }
+  }
+  part { name: "tube_6"; type: IMAGE; mouse_events: 0; clip_to: "digit_clip";
+   description { state: "default" 0.0; rel.to: "tubes_area"; rel1 { relative: 0.42857143 0; offset: 1 0; } rel2 { relative: 0.50000000 1; offset: -2 -1; } aspect: .45 .45; aspect_preference: BOTH; image.normal: "equation_tube.svg"; }
+  }
+  part { name: "equation.digit.6"; type: TEXT; scale: 1; mouse_events: 0; clip_to: "digit_clip"; effect: GLOW;
+   description { state: "default" 0.0; rel.to: "tube_6"; rel1.relative: 0 .1; rel2.relative: 1 .79;
+    color: 255 185 104 255; color2: 255 96 24 150; color3: 255 130 45 100;
+    text { font: "Monospace"; size: 25; fit: 1 1; size_range: 6 25; align: .5 .5; } }
+  }
+  part { name: "tube_7"; type: IMAGE; mouse_events: 0; clip_to: "digit_clip";
+   description { state: "default" 0.0; rel.to: "tubes_area"; rel1 { relative: 0.50000000 0; offset: 1 0; } rel2 { relative: 0.57142857 1; offset: -2 -1; } aspect: .45 .45; aspect_preference: BOTH; image.normal: "equation_tube.svg"; }
+  }
+  part { name: "equation.digit.7"; type: TEXT; scale: 1; mouse_events: 0; clip_to: "digit_clip"; effect: GLOW;
+   description { state: "default" 0.0; rel.to: "tube_7"; rel1.relative: 0 .1; rel2.relative: 1 .79;
+    color: 255 185 104 255; color2: 255 96 24 150; color3: 255 130 45 100;
+    text { font: "Monospace"; size: 25; fit: 1 1; size_range: 6 25; align: .5 .5; } }
+  }
+  part { name: "tube_8"; type: IMAGE; mouse_events: 0; clip_to: "digit_clip";
+   description { state: "default" 0.0; rel.to: "tubes_area"; rel1 { relative: 0.57142857 0; offset: 1 0; } rel2 { relative: 0.64285714 1; offset: -2 -1; } aspect: .45 .45; aspect_preference: BOTH; image.normal: "equation_tube.svg"; }
+  }
+  part { name: "equation.digit.8"; type: TEXT; scale: 1; mouse_events: 0; clip_to: "digit_clip"; effect: GLOW;
+   description { state: "default" 0.0; rel.to: "tube_8"; rel1.relative: 0 .1; rel2.relative: 1 .79;
+    color: 255 185 104 255; color2: 255 96 24 150; color3: 255 130 45 100;
+    text { font: "Monospace"; size: 25; fit: 1 1; size_range: 6 25; align: .5 .5; } }
+  }
+  part { name: "tube_9"; type: IMAGE; mouse_events: 0; clip_to: "digit_clip";
+   description { state: "default" 0.0; rel.to: "tubes_area"; rel1 { relative: 0.64285714 0; offset: 1 0; } rel2 { relative: 0.71428571 1; offset: -2 -1; } aspect: .45 .45; aspect_preference: BOTH; image.normal: "equation_tube.svg"; }
+  }
+  part { name: "equation.digit.9"; type: TEXT; scale: 1; mouse_events: 0; clip_to: "digit_clip"; effect: GLOW;
+   description { state: "default" 0.0; rel.to: "tube_9"; rel1.relative: 0 .1; rel2.relative: 1 .79;
+    color: 255 185 104 255; color2: 255 96 24 150; color3: 255 130 45 100;
+    text { font: "Monospace"; size: 25; fit: 1 1; size_range: 6 25; align: .5 .5; } }
+  }
+  part { name: "tube_10"; type: IMAGE; mouse_events: 0; clip_to: "digit_clip";
+   description { state: "default" 0.0; rel.to: "tubes_area"; rel1 { relative: 0.71428571 0; offset: 1 0; } rel2 { relative: 0.78571429 1; offset: -2 -1; } aspect: .45 .45; aspect_preference: BOTH; image.normal: "equation_tube.svg"; }
+  }
+  part { name: "equation.digit.10"; type: TEXT; scale: 1; mouse_events: 0; clip_to: "digit_clip"; effect: GLOW;
+   description { state: "default" 0.0; rel.to: "tube_10"; rel1.relative: 0 .1; rel2.relative: 1 .79;
+    color: 255 185 104 255; color2: 255 96 24 150; color3: 255 130 45 100;
+    text { font: "Monospace"; size: 25; fit: 1 1; size_range: 6 25; align: .5 .5; } }
+  }
+  part { name: "tube_11"; type: IMAGE; mouse_events: 0; clip_to: "digit_clip";
+   description { state: "default" 0.0; rel.to: "tubes_area"; rel1 { relative: 0.78571429 0; offset: 1 0; } rel2 { relative: 0.85714286 1; offset: -2 -1; } aspect: .45 .45; aspect_preference: BOTH; image.normal: "equation_tube.svg"; }
+  }
+  part { name: "equation.digit.11"; type: TEXT; scale: 1; mouse_events: 0; clip_to: "digit_clip"; effect: GLOW;
+   description { state: "default" 0.0; rel.to: "tube_11"; rel1.relative: 0 .1; rel2.relative: 1 .79;
+    color: 255 185 104 255; color2: 255 96 24 150; color3: 255 130 45 100;
+    text { font: "Monospace"; size: 25; fit: 1 1; size_range: 6 25; align: .5 .5; } }
+  }
+  part { name: "tube_12"; type: IMAGE; mouse_events: 0; clip_to: "digit_clip";
+   description { state: "default" 0.0; rel.to: "tubes_area"; rel1 { relative: 0.85714286 0; offset: 1 0; } rel2 { relative: 0.92857143 1; offset: -2 -1; } aspect: .45 .45; aspect_preference: BOTH; image.normal: "equation_tube.svg"; }
+  }
+  part { name: "equation.digit.12"; type: TEXT; scale: 1; mouse_events: 0; clip_to: "digit_clip"; effect: GLOW;
+   description { state: "default" 0.0; rel.to: "tube_12"; rel1.relative: 0 .1; rel2.relative: 1 .79;
+    color: 255 185 104 255; color2: 255 96 24 150; color3: 255 130 45 100;
+    text { font: "Monospace"; size: 25; fit: 1 1; size_range: 6 25; align: .5 .5; } }
+  }
+  part { name: "tube_13"; type: IMAGE; mouse_events: 0; clip_to: "digit_clip";
+   description { state: "default" 0.0; rel.to: "tubes_area"; rel1 { relative: 0.92857143 0; offset: 1 0; } rel2 { relative: 1.00000000 1; offset: -2 -1; } aspect: .45 .45; aspect_preference: BOTH; image.normal: "equation_tube.svg"; }
+  }
+  part { name: "equation.digit.13"; type: TEXT; scale: 1; mouse_events: 0; clip_to: "digit_clip"; effect: GLOW;
+   description { state: "default" 0.0; rel.to: "tube_13"; rel1.relative: 0 .1; rel2.relative: 1 .79;
+    color: 255 185 104 255; color2: 255 96 24 150; color3: 255 130 45 100;
+    text { font: "Monospace"; size: 25; fit: 1 1; size_range: 6 25; align: .5 .5; } }
+  }
+#endif
+ }
+ programs {
+  #include "equation_motion_programs.edc"
+#if LAB
+  program { signal: "equation,digits"; source: "equation";
+   action: STATE_SET "digits" 0.0; target: "equation.value"; }
+  program { signal: "equation,digits"; source: "equation";
+   action: STATE_SET "default" 0.0; target: "digit_clip"; }
+  program { signal: "equation,compact"; source: "equation";
+   action: STATE_SET "compact" 0.0; target: "digit_clip"; }
+  program { signal: "equation,compact"; source: "equation";
+   action: STATE_SET "default" 0.0; target: "equation.value"; }
+#endif
+ }
+}

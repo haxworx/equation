@@ -1,0 +1,13 @@
+#if !LAB && !ATELIER
+program { signal: "equation,hover,on"; source: "equation"; action: ACTION_STOP;
+ target: "equation_hover_rise"; target: "equation_hover_fall"; target: "equation_hover_rest";
+ after: "equation_hover_rise"; }
+program { name: "equation_hover_rise"; action: STATE_SET "bright" 0.0;
+ target: "equation.hover_pulse"; transition: SINUSOIDAL 0.70; after: "equation_hover_fall"; }
+program { name: "equation_hover_fall"; action: STATE_SET "dim" 0.0;
+ target: "equation.hover_pulse"; transition: SINUSOIDAL 0.95; after: "equation_hover_rise"; }
+program { signal: "equation,hover,off"; source: "equation"; action: ACTION_STOP;
+ target: "equation_hover_rise"; target: "equation_hover_fall"; after: "equation_hover_rest"; }
+program { name: "equation_hover_rest"; action: STATE_SET "default" 0.0;
+ target: "equation.hover_pulse"; transition: DECELERATE 0.18; }
+#endif

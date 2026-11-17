@@ -1,0 +1,42 @@
+/* Decorative instruments stay behind the real result and never alter digits. */
+part { name: "instrument_clip"; type: RECT; mouse_events: 0;
+ description { state: "default" 0.0; rel1.offset: 3 3; rel2.offset: -4 -4; }
+}
+part { name: "motion_orbit"; type: IMAGE; scale: 1; mouse_events: 0; clip_to: "instrument_clip";
+ description { state: "default" 0.0; offset_scale: 1;
+#if LAB
+  rel1 { relative: 0 1; offset: 16 -30; } rel2 { relative: 0 1; offset: 40 -6; }
+#else
+  rel1 { relative: 0 .5; offset: -18 -92; } rel2 { relative: 0 .5; offset: 166 92; }
+#endif
+  image.normal: "equation_motion.svg"; color: 255 255 255 45;
+  map { on: 1; rotation.z: 0; }
+ }
+ description { state: "spin" 0.0; inherit: "default" 0.0; map.rotation.z: 360; }
+}
+part { name: "result_clip"; type: RECT; mouse_events: 0;
+ description { state: "default" 0.0; color: 255 255 255 255; }
+ description { state: "ignite" 0.0; inherit: "default" 0.0; color: 255 255 255 85; }
+}
+part { name: "scan"; type: RECT; scale: 1; mouse_events: 0; clip_to: "instrument_clip";
+ description { state: "default" 0.0; offset_scale: 1; color: RGB_ACCENT 0;
+  rel1.relative: 0 0; rel2 { relative: 0 1; offset: 12 -1; } }
+ description { state: "start" 0.0; inherit: "default" 0.0; color: RGB_ACCENT 30; }
+ description { state: "finish" 0.0; inherit: "default" 0.0; color: RGB_ACCENT 0;
+  rel1.relative: 1 0; rel2.relative: 1 1; }
+}
+part { name: "motion_led_0"; type: RECT; scale: 1; mouse_events: 0; clip_to: "instrument_clip";
+ description { state: "default" 0.0; offset_scale: 1; color: RGB_ACCENT 65;
+  rel1 { relative: 1 1; offset: -56 -18; } rel2 { relative: 1 1; offset: -48 -16; } }
+ description { state: "lit" 0.0; inherit: "default" 0.0; color: RGB_ACCENT 220; }
+}
+part { name: "motion_led_1"; type: RECT; scale: 1; mouse_events: 0; clip_to: "instrument_clip";
+ description { state: "default" 0.0; offset_scale: 1; color: RGB_ACCENT 65;
+  rel1 { relative: 1 1; offset: -42 -18; } rel2 { relative: 1 1; offset: -34 -16; } }
+ description { state: "lit" 0.0; inherit: "default" 0.0; color: RGB_ACCENT 220; }
+}
+part { name: "motion_led_2"; type: RECT; scale: 1; mouse_events: 0; clip_to: "instrument_clip";
+ description { state: "default" 0.0; offset_scale: 1; color: RGB_ACCENT 65;
+  rel1 { relative: 1 1; offset: -28 -18; } rel2 { relative: 1 1; offset: -20 -16; } }
+ description { state: "lit" 0.0; inherit: "default" 0.0; color: RGB_ACCENT 220; }
+}

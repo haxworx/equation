@@ -1,0 +1,9 @@
+/* A quiet instrument backlight: no movement of the key or its legend. */
+#if !LAB && !ATELIER
+part { name: "equation.hover_pulse"; type: RECT; mouse_events: 0; scale: 1;
+ description { state: "default" 0.0; offset_scale: 1; color: RGB_ACCENT 0;
+  rel1.offset: 4 4; rel2.offset: -5 -5; }
+ description { state: "bright" 0.0; inherit: "default" 0.0; color: RGB_ACCENT 24; }
+ description { state: "dim" 0.0; inherit: "default" 0.0; color: RGB_ACCENT 5; }
+}
+#endif

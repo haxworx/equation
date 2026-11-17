@@ -1,0 +1,27 @@
+#define BG 238 232 219 255
+#define PANEL 247 242 231 255
+#define EDGE 199 190 173 255
+#define INK 43 57 57 255
+#define ACCENT 179 81 54 255
+#define RGB_ACCENT 179 81 54
+#define MUTE 103 117 111 255
+#define DISPLAY 226 226 207 255
+#define ENTRY_STYLE "font=Sans font_size=11 color=#2b3939ff wrap=none"
+#define GUIDE_STYLE "font=Sans font_size=11 color=#67756fff wrap=none"
+#define LABEL_STYLE "font=Sans font_size=10 color=#67756fff wrap=none"
+#define THEME_SUBTITLE "A STUDY IN NUMBERS"
+#define THEME_LABEL "Atelier"
+#define ATELIER 1
+#define LAB 0
+#include "images/equation_images.edc"
+efl_version: 1 26;
+data { item: "equation.theme.name" THEME_LABEL; item: "equation.theme.version" "1"; }
+collections {
+ #include "../common/groups/equation_frame.edc"
+ #include "../common/groups/equation_buttons.edc"
+ #include "../common/groups/equation_choices.edc"
+ #include "../common/groups/equation_fields.edc"
+ #include "../common/groups/equation_popup.edc"
+ #include "../common/groups/equation_display.edc"
+ #include "../common/groups/equation_results.edc"
+}

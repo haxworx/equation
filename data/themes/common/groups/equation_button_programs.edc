@@ -1,0 +1,38 @@
+program { signal: "load"; source: "";
+ script { set_int(equation_hovered, 0); set_int(equation_focused, 0); set_int(equation_pressed, 0);
+  set_int(equation_disabled, 0); set_int(equation_lit, 0); set_int(equation_visual, 0); } }
+program { signal: "mouse,in"; source: "event";
+ script { set_int(equation_hovered, 1); equation_button_update(); } }
+program { signal: "mouse,out"; source: "event";
+ script { set_int(equation_hovered, 0); equation_button_update(); } }
+program { signal: "mouse,down,1*"; source: "event";
+ script { set_int(equation_pressed, 1); equation_button_update(); emit("elm,action,press", "elm"); } }
+program { signal: "mouse,up,1"; source: "event";
+ script { set_int(equation_pressed, 0); equation_button_update(); emit("elm,action,unpress", "elm"); } }
+program { signal: "mouse,clicked,1"; source: "event"; action: SIGNAL_EMIT "elm,action,click" "elm"; }
+program { signal: "elm,action,focus_highlight,show"; source: "elm";
+ script { set_int(equation_focused, 1); equation_button_update(); } }
+program { signal: "elm,action,focus_highlight,hide"; source: "elm";
+ script { set_int(equation_focused, 0); equation_button_update(); } }
+program { signal: "elm,state,disabled"; source: "elm";
+ script { set_int(equation_disabled, 1); set_int(equation_pressed, 0); equation_button_update(); } }
+program { signal: "elm,state,enabled"; source: "elm";
+ script { set_int(equation_disabled, 0); equation_button_update(); } }
+program { signal: "hide"; source: "";
+ script { set_int(equation_hovered, 0); set_int(equation_focused, 0); set_int(equation_pressed, 0); equation_button_update(); } }
+program { signal: "equation,button,disabled"; source: "equation";
+ action: STATE_SET "disabled" 0.0; target: "surface"; target: "elm.text"; target: "event"; }
+program { signal: "elm,state,enabled"; source: "elm";
+ action: STATE_SET "default" 0.0; target: "event"; }
+program { signal: "equation,button,idle"; source: "equation";
+ action: STATE_SET "default" 0.0; target: "surface"; transition: DECELERATE 0.15; }
+program { signal: "equation,button,over"; source: "equation";
+ action: STATE_SET "over" 0.0; target: "surface"; transition: DECELERATE 0.15; }
+program { signal: "equation,button,pressed"; source: "equation";
+ action: STATE_SET "pressed" 0.0; target: "surface"; transition: DECELERATE 0.04; }
+program { signal: "equation,button,idle"; source: "equation";
+ action: STATE_SET "default" 0.0; target: "elm.text"; transition: DECELERATE 0.10; }
+program { signal: "equation,button,over"; source: "equation";
+ action: STATE_SET "default" 0.0; target: "elm.text"; transition: DECELERATE 0.10; }
+program { signal: "equation,button,pressed"; source: "equation";
+ action: STATE_SET "pressed" 0.0; target: "elm.text"; transition: DECELERATE 0.04; }

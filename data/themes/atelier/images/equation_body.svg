@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="900" viewBox="0 0 520 900">
+  <rect x="1" y="1" width="518" height="898" rx="6" fill="#eee8db" stroke="#c7bead" stroke-width="2"/>
+  <path d="M18 18v30" stroke="#b35136" stroke-width="4"/>
+  <g stroke="#68796f" stroke-opacity=".22">
+    <path d="M480 12v40M470 24h24M476 17h12M476 31h12M476 38h12M476 45h12"/>
+  </g>
+</svg>

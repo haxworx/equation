@@ -1,0 +1,22 @@
+images {
+ image: "equation_radio_hover.svg" COMP;
+ image: "equation_radio_on.svg" COMP;
+ image: "equation_toggle.svg" COMP;
+ image: "equation_toggle_on.svg" COMP;
+ image: "equation_equals.svg" COMP;
+ image: "equation_copy.svg" COMP;
+ image: "equation_check.svg" COMP;
+ image: "equation_field.svg" COMP;
+ image: "equation_motion.svg" COMP;
+ image: "equation_window_shadow.png" COMP;
+ image: "equation_radio.svg" COMP;
+ image: "equation_rule.svg" COMP;
+ image: "equation_body.svg" COMP;
+ image: "equation_key.svg" COMP;
+ image: "equation_key_hover.svg" COMP;
+ image: "equation_key_pressed.svg" COMP;
+ image: "equation_display.svg" COMP;
+#if LAB
+ image: "equation_tube.svg" COMP;
+#endif
+}
